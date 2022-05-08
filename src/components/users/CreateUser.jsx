@@ -1,9 +1,10 @@
 import {useContext, useState} from 'react';
 import UsersContext from "../../context/UsersContext";
 
-function AddUserForm() {
+function CreateUser({setOpenModal}) {
 
     const usersContext = useContext(UsersContext);
+
     const [user, setUserState] = useState(
         {
             name: '',
@@ -15,24 +16,16 @@ function AddUserForm() {
         }
     );
 
-
     let formHandler = (e) => {
         e.preventDefault();
+        setOpenModal(false);
         usersContext.dispatch({
             type: 'add_user', payload: {user}
         })
-        setUserState({
-            name: '',
-            family: '',
-            nickname: '',
-            email: '',
-            isAdmin: false,
-            createdAt: Date.now(),
-        });
     }
 
     return (
-        <form className="space-y-5" onSubmit={formHandler}>
+        <form className="space-y-5" onSubmit={(e) => formHandler(e)}>
             <div>
                 <input onChange={(e) => setUserState({
                     ...user,
@@ -78,6 +71,29 @@ function AddUserForm() {
                 />
             </div>
 
+            <div className="flex items-center border-2 border-gray-100">
+                <span className="text-gray-500">Type: </span>
+                <div className="flex justify-between gap-10 ml-28">
+                    <label className="inline-flex items-center mt-3">
+                        <input type="radio" name="typeOfUser" id="user" value="false"
+                               className="form-radio h-5 w-5 text-gray-600" checked onChange={(e) => setUserState({
+                            ...user,
+                            isAdmin: e.target.value
+                        })}/><span
+                        className="ml-2 text-gray-700">User</span>
+                    </label>
+
+                    <label className="inline-flex items-center mt-3">
+                        <input type="radio" name="typeOfUser" id="admin" value="true"
+                               className="form-radio h-5 w-5 text-red-600" onChange={(e) => setUserState({
+                            ...user,
+                            isAdmin: e.target.value
+                        })}/><span
+                        className="ml-2 text-gray-700">Admin</span>
+                    </label>
+                </div>
+            </div>
+
             <button type="submit" className="w-full py-3 mt-10 bg-[#063970] rounded-md
                         font-medium text-white uppercase
                         focus:outline-none hover:shadow-none">
@@ -87,4 +103,4 @@ function AddUserForm() {
     );
 }
 
-export default AddUserForm;
+export default CreateUser;

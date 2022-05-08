@@ -2,8 +2,8 @@ const usersReducer = (state, action) => {
     switch (action.type) {
         case 'add_user':
             return addUser(state, action);
-        case 'decrement':
-            return state - 1
+        case 'load_users':
+            return loadUsers(action);
         case 'reset':
             return 0
         default:
@@ -16,11 +16,15 @@ export default usersReducer;
 let addUser = (state, action) => {
     let {user} = action.payload;
 
+    return [
+        ...state,
+        user
+    ]
+}
+
+let loadUsers = (action) => {
     return {
-        users: [
-            state.users,
-            user
-        ]
+        users: action.payload
     }
 }
 

@@ -1,6 +1,6 @@
-import Header from "./components/layouts/Header";
-import UsersProvider from './providers/UsersProvider';
-import UsersList from "./components/users/UsersList";
+import Header from "./layouts/Header";
+import UsersProvider from '../providers/UsersProvider';
+import UsersList from "./users/UsersList";
 
 export default function App() {
     return (
