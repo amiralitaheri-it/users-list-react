@@ -1,12 +1,19 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import UsersContext from "../../context/UsersContext";
 
-function DeleteUser() {
+function DeleteUser({index}) {
+    const userContext = useContext(UsersContext);
+
+    let deleteHandler = () => {
+        userContext.dispatch({type: 'delete_user', payload: index})
+    }
+
     return (
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 text-red-700 cursor-pointer"
-            viewBox="0 0 20 20"
-            fill="currentColor"
+        <svg onClick={deleteHandler}
+             xmlns="http://www.w3.org/2000/svg"
+             className="h-5 w-5 text-red-700 cursor-pointer"
+             viewBox="0 0 20 20"
+             fill="currentColor"
         >
             <path
                 fillRule="evenodd"

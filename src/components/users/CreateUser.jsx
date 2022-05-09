@@ -16,7 +16,7 @@ function CreateUser({setOpenModal}) {
         }
     );
 
-    let formHandler = (e) => {
+    let createUserHandler = (e) => {
         e.preventDefault();
         setOpenModal(false);
         usersContext.dispatch({
@@ -25,7 +25,7 @@ function CreateUser({setOpenModal}) {
     }
 
     return (
-        <form className="space-y-5" onSubmit={(e) => formHandler(e)}>
+        <form className="space-y-5" onSubmit={(e) => createUserHandler(e)}>
             <div>
                 <input onChange={(e) => setUserState({
                     ...user,

@@ -1,9 +1,13 @@
 const usersReducer = (state, action) => {
     switch (action.type) {
         case 'add_user':
-            return addUser(state, action);
+            return addUser(state, action.payload);
         case 'load_users':
-            return loadUsers(action);
+            return loadUsers(action.payload);
+        case 'delete_user':
+            return deleteUser(state, action.payload);
+        case 'edit_user':
+            return editUser(state, action.payload);
         case 'reset':
             return 0
         default:
@@ -13,8 +17,7 @@ const usersReducer = (state, action) => {
 
 export default usersReducer;
 
-let addUser = (state, action) => {
-    let {user} = action.payload;
+let addUser = (state, {user}) => {
 
     return [
         ...state,
@@ -22,51 +25,31 @@ let addUser = (state, action) => {
     ]
 }
 
-let loadUsers = (action) => {
+let loadUsers = (usersData) => {
     return {
-        users: action.payload
+        users: usersData
     }
 }
 
-let deleteTodo = (state, action) => {
-    let {key} = action.payload;
-
-    return {
-        ...state,
-        todos: state.todos.filter(item => item.key !== key)
-    }
+let deleteUser = (state, key) => {
+    return state.filter((_user, index) => index !== key)
 }
 
-let toggleTodo = (state, action) => {
-    let {key} = action.payload;
-
-    let item = state.todos.find(item => item.key === key);
-    item.done = !item.done;
-
-    let newTodos = state.todos.filter(item => item.key !== key)
-
-    return {
-        ...state,
-        todos: [
-            ...newTodos,
-            item
-        ]
-    }
+let editUser = (state, editedUserData) => {
+    let lastUser = state.find((_user, index) => index === editedUserData.index);
+    changeLastUserToNew(lastUser, editedUserData.user);
+    const usersList = state.filter((_user, index) => index !== editedUserData.index);
+    console.log(editedUserData.user);
+    return [
+        ...usersList,
+        editedUserData.user
+    ];
 }
 
-let editTodo = (state, action) => {
-    let {key, text} = action.payload;
-
-    let item = state.todos.find(item => item.key === key);
-    item.text = text;
-
-    let newTodos = state.todos.filter(item => item.key !== key)
-
-    return {
-        ...state,
-        todos: [
-            ...newTodos,
-            item
-        ]
-    }
+let changeLastUserToNew = (lastUser, newUser) => {
+    lastUser.name = newUser.name;
+    lastUser.family = newUser.family;
+    lastUser.nickname = newUser.nickname;
+    lastUser.email = newUser.email;
+    lastUser.isAdmin = newUser.isAdmin;
 }

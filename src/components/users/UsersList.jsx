@@ -7,15 +7,15 @@ function UsersList() {
     const userContext = useContext(UsersContext);
 
     return (
-        <table className="mt-10 max-w-5xl mx-auto table-auto">
+        <table className="mt-10 max-w-5xl mx-auto table-auto border-4 rounded-lg">
             <TableHeader/>
-            <tbody className="bg-gray-200">
+            <tbody className="bg-gray-200 border-2 border-4 rounded-lg">
             {
                 userContext.users.length === 0
                     ? <tr>
-                        <td>there isn`t any users</td>
+                        <td colSpan="6" className="text-center text-rose-800 p-5 text-3xl">There isn`t any users</td>
                     </tr>
-                    : userContext.users.map((user, index) => <UserItem key={user.createdAt + Math.random() * 1000}
+                    : userContext.users.map((user, index) => <UserItem key={index + Math.random() * 1000}
                                                                        user={user} index={index}/>)
             }
             </tbody>
