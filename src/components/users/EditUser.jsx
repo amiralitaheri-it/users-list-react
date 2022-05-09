@@ -3,7 +3,7 @@ function EditUser({edit, setEdit}) {
     return (
         <svg onClick={() => setEdit(!edit)}
              xmlns="http://www.w3.org/2000/svg"
-             className="h-5 w-5 text-green-700 mx-2 cursor-pointer"
+             className="h-5 w-5 text-green-700 mx-2 cursor-pointer hover:text-green-500 transition ease-out duration-200"
              viewBox="0 0 20 20"
              fill="currentColor"
         >

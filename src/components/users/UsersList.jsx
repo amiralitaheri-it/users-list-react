@@ -1,15 +1,14 @@
 import {useContext} from 'react';
 import UsersContext from "../../context/UsersContext";
-import UserItem from "./UserItem";
 import TableHeader from "../layouts/TableHeader";
+import UserItem from "./UserItem";
 
 function UsersList() {
     const userContext = useContext(UsersContext);
-
     return (
-        <table className="mt-10 max-w-5xl mx-auto table-auto border-4 rounded-lg">
+        <table className="mt-12 max-w-5xl mx-auto table-auto rounded-lg">
             <TableHeader/>
-            <tbody className="bg-gray-200 border-2 border-4 rounded-lg">
+            <tbody className="bg-gray-200 border-2 rounded-lg">
             {
                 userContext.users.length === 0
                     ? <tr>

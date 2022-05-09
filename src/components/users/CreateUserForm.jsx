@@ -1,7 +1,9 @@
 import {useContext, useState} from 'react';
 import UsersContext from "../../context/UsersContext";
+import Swal from "sweetalert2";
+import moment from "moment";
 
-function CreateUser({setOpenModal}) {
+function CreateUserForm({setOpenModal}) {
 
     const usersContext = useContext(UsersContext);
 
@@ -12,7 +14,7 @@ function CreateUser({setOpenModal}) {
             nickname: '',
             email: '',
             isAdmin: false,
-            createdAt: Date.now(),
+            createdAt: moment().format('L'),
         }
     );
 
@@ -21,7 +23,17 @@ function CreateUser({setOpenModal}) {
         setOpenModal(false);
         usersContext.dispatch({
             type: 'add_user', payload: {user}
-        })
+        });
+
+        Swal.fire({
+            title: "User created successfully :)",
+            icon: "success",
+            showConfirmButton: false,
+            timerProgressBar: true,
+            timer: 3000,
+            toast: true,
+            position: 'top',
+        });
     }
 
     return (
@@ -71,8 +83,8 @@ function CreateUser({setOpenModal}) {
                 />
             </div>
 
-            <div className="flex items-center border-2 border-gray-100">
-                <span className="text-gray-500">Type: </span>
+            <div className="flex items-center border-2 border-gray-100 py-1 rounded-md">
+                <span className="text-gray-500 ml-4">Type</span>
                 <div className="flex justify-between gap-10 ml-28">
                     <label className="inline-flex items-center mt-3">
                         <input type="radio" name="typeOfUser" id="user" value="false"
@@ -94,13 +106,13 @@ function CreateUser({setOpenModal}) {
                 </div>
             </div>
 
-            <button type="submit" className="w-full py-3 mt-10 bg-[#063970] rounded-md
+            <button type="submit" className="w-full py-3 mt-10 bg-[#063970] hover:opacity-90 transition duration-200 rounded-md
                         font-medium text-white uppercase
                         focus:outline-none hover:shadow-none">
-                Login
+                Create
             </button>
         </form>
     );
 }
 
-export default CreateUser;
+export default CreateUserForm;

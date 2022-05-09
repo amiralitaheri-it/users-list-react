@@ -1,17 +1,27 @@
 import React, {useContext} from 'react';
 import UsersContext from "../../context/UsersContext";
+import Swal from "sweetalert2";
 
 function DeleteUser({index}) {
     const userContext = useContext(UsersContext);
 
     let deleteHandler = () => {
-        userContext.dispatch({type: 'delete_user', payload: index})
+        userContext.dispatch({type: 'delete_user', payload: index});
+        Swal.fire({
+            title: "User deleted successfully :)",
+            icon: "success",
+            showConfirmButton: false,
+            timerProgressBar: true,
+            timer: 3000,
+            toast: true,
+            position: 'top',
+        });
     }
 
     return (
         <svg onClick={deleteHandler}
              xmlns="http://www.w3.org/2000/svg"
-             className="h-5 w-5 text-red-700 cursor-pointer"
+             className="h-5 w-5 text-red-700 cursor-pointer hover:text-red-500 transition ease-out duration-200"
              viewBox="0 0 20 20"
              fill="currentColor"
         >

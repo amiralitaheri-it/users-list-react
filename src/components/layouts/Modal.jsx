@@ -1,21 +1,23 @@
 import React from "react";
 import "../../styles/modal.css";
-import CreateUser from "../users/CreateUser";
+import CreateUserForm from "../users/CreateUserForm";
 
 function Modal({setOpenModal}) {
     return (
         <div className="modalBackground">
             <div className="modalContainer">
-                <div className="titleCloseBtn">
+                <div className="titleCloseBtn items-center justify-between">
+                    <span className="font-semibold text-green-700">Create New User</span>
                     <button
                         onClick={() => {
                             setOpenModal(false);
                         }}
+                        className="hover:text-rose-500 transition duration-200"
                     >
-                        X
+                        x
                     </button>
                 </div>
-                <CreateUser setOpenModal={setOpenModal}/>
+                <CreateUserForm setOpenModal={setOpenModal}/>
             </div>
         </div>
     );
