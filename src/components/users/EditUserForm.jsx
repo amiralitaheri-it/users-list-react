@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react';
 import UsersContext from "../../context/UsersContext";
-import Swal from "sweetalert2";
+import {sweetalert} from "../../helpers/helpers";
 
 function EditUserForm({userTarget, index, setEdit}) {
     const usersContext = useContext(UsersContext);
@@ -11,50 +11,57 @@ function EditUserForm({userTarget, index, setEdit}) {
             family: userTarget.family,
             nickname: userTarget.nickname,
             email: userTarget.email,
+            gender: userTarget.gender,
             isAdmin: userTarget.isAdmin,
+            isActive: userTarget.isActive,
             createdAt: userTarget.createdAt,
         }
     );
 
     let editUserHandler = (e) => {
         e.preventDefault();
+
         usersContext.dispatch({
             type: 'edit_user', payload: {index, user}
         })
+
         setEdit(false);
-        Swal.fire({
-            title: "User Edited successfully :)",
-            icon: "success",
-            showConfirmButton: false,
-            timerProgressBar: true,
-            timer: 3000,
-            toast: true,
-            position: 'top',
-        });
+
+        sweetalert("User Edited successfully :)");
     }
 
     return (
-        <tr className="bg-white border-b-2 border-gray-200">
-            <td className="px-16 py-2 ml-6">
+        <tr className="bg-white border-b-2 border-gray-200 text-center">
+            <td className="ml-6 text-center">
                 <span className="text-center ml-3">{index + 1}</span>
             </td>
             <td>
-                <input id="name" type="text" defaultValue={userTarget.name}
-                       className="border-cyan-600 border-2 px-2 focus:text-cyan-600 focus:outline-none focus:border-gray-500 rounded-md"
+                <input required id="name" type="text" defaultValue={user.name}
+                       className="w-full border-cyan-600 border-2 text-center focus:text-cyan-600 focus:outline-none focus:border-gray-500 rounded"
                        onChange={(e) => setUserState({
                            ...user,
                            name: e.target.value
                        })}
                 />
             </td>
-            <td className="px-16 py-2">
-                <input id="name" type="text" defaultValue={userTarget.createdAt}
-                       className="focus:text-gray-500 focus:outline-none focus:border-gray-200 rounded-md" disabled
+            <td>
+                <input required id="name" type="text" defaultValue={user.nickname}
+                       className="w-full border-cyan-600 border-2 text-center focus:text-cyan-600 focus:outline-none focus:border-gray-500 rounded"
+                       onChange={(e) => setUserState({
+                           ...user,
+                           name: e.target.value
+                       })}
                 />
             </td>
-            <td className="px-16 py-2">
-                <input id="name" type="email" defaultValue={userTarget.email}
-                       className="focus:text-gray-500 focus:outline-none focus:border-gray-200 rounded-md"
+            <td className="text-center">
+                <input required id="name" type="text" defaultValue={user.createdAt}
+                       className="w-full bg-gray-300 border-cyan-600 border-2 text-center rounded focus:text-gray-500 focus:outline-none focus:border-gray-200 rounded-md"
+                       disabled
+                />
+            </td>
+            <td className="text-center w-full">
+                <input required id="name" type="email" defaultValue={user.email}
+                       className="w-full focus:text-gray-500 text-center focus:border-gray-200 border-cyan-600 border-2 rounded"
                        onChange={(e) => setUserState({
                            ...user,
                            email: e.target.value
@@ -62,47 +69,76 @@ function EditUserForm({userTarget, index, setEdit}) {
                 />
             </td>
 
-            <td className="px-16 py-2">
-                <div className="flex justify-between items-center gap-4">
-                    <label className="inline-flex items-center mt-3">
-                        <input type="radio" name={`user${index}`} id="user" defaultValue="false"
-                               className="form-radio h-5 w-5 text-gray-600"
-                               checked={!userTarget.isAdmin}
+            <td className="text-center">
+                <div className="flex justify-center items-center text-base">
+                    <label className="inline-flex items-center">
+                        <input type="radio" name={`user-${index}`} id="user"
+                               className="form-radio text-center h-5 w-5 text-gray-600"
+                               checked={!user.isAdmin}
                                onChange={(e) => setUserState({
                                    ...user,
                                    isAdmin: e.target.value
                                })}/><span
-                        className="ml-2 text-gray-700">User</span>
+                        className="ml-2 text-gray-700 mr-3">User</span>
                     </label>
 
-                    <label className="inline-flex items-center mt-3">
-                        <input type="radio" name={`user${index}`} id="admin" defaultValue="true"
-                               className="form-radio h-5 w-5 text-red-600" checked={!!userTarget.isAdmin}
+                    <label className="inline-flex items-center">
+                        <input type="radio" name={`user-${index}`} id="admin"
+                               className="form-radio h-5 w-5 text-red-600" checked={user.isAdmin}
                                onChange={(e) => setUserState({
                                    ...user,
-                                   isAdmin: e.target.value
+                                   isAdmin: e.target.checked
                                })}/><span
                         className="ml-2 text-gray-700">Admin</span>
                     </label>
                 </div>
             </td>
+            <td className="text-center">
+                <div className="flex justify-center items-center border-2 border-gray-100 rounded-md text-center">
+                    <div className="flex justify-center items-center">
+                        <select className="form-select appearance-none
+                      text-base
+                      text-center
+                      font-normal
+                      px-2
+                      text-gray-700
+                      bg-white bg-clip-padding bg-no-repeat
+                      border border-solid border-cyan-600
+                      rounded
+                      transition
+                      ease-in-out
+                      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                aria-label="Default select example" defaultValue={user.gender}
+                                onChange={(e) => setUserState({
+                                    ...user,
+                                    gender: e.target.value
+                                })}>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                </div>
+            </td>
 
-            <td className="px-16 py-2 text-center">
-                <svg onClick={(e) => editUserHandler(e)}
-                     xmlns="http://www.w3.org/2000/svg"
-                     className="h-5 w-5 text-green-700 mx-2 cursor-pointer text-center hover:text-green-500"
-                     viewBox="0 0 20 20"
-                     fill="currentColor"
-                >
-                    <path
-                        d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"
-                    />
-                    <path
-                        fillRule="evenodd"
-                        d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
-                        clipRule="evenodd"
-                    />
-                </svg>
+            <td className="text-center">
+                <label className="inline-flex items-center text-center">
+                        <span
+                            className="ml-2 text-gray-700">Active User</span>
+                    <input type="checkbox" className="form-checkbox h-5 w-5 text-blue-600 ml-5"
+                           checked={user.isActive}
+                           onChange={(e) => setUserState({
+                               ...user,
+                               isActive: e.target.checked
+                           })}/>
+                </label>
+            </td>
+
+            <td className="px-16 text-center">
+                <span
+                    className="bg-cyan-500 hover:bg-cyan-500 transition duration-200 cursor-pointer text-white px-2 py-1 rounded-md"
+                    onClick={(e) => editUserHandler(e)}>
+                    Apply
+                </span>
             </td>
         </tr>
     );

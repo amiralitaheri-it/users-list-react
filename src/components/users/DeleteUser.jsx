@@ -1,21 +1,14 @@
 import React, {useContext} from 'react';
 import UsersContext from "../../context/UsersContext";
-import Swal from "sweetalert2";
+import {sweetalert} from "../../helpers/helpers";
 
 function DeleteUser({index}) {
     const userContext = useContext(UsersContext);
 
     let deleteHandler = () => {
         userContext.dispatch({type: 'delete_user', payload: index});
-        Swal.fire({
-            title: "User deleted successfully :)",
-            icon: "success",
-            showConfirmButton: false,
-            timerProgressBar: true,
-            timer: 3000,
-            toast: true,
-            position: 'top',
-        });
+
+        sweetalert("User deleted successfully :)");
     }
 
     return (

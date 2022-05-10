@@ -1,7 +1,7 @@
 import {useContext, useState} from 'react';
 import UsersContext from "../../context/UsersContext";
-import Swal from "sweetalert2";
 import moment from "moment";
+import {sweetalert} from "../../helpers/helpers";
 
 function CreateUserForm({setOpenModal}) {
 
@@ -13,6 +13,8 @@ function CreateUserForm({setOpenModal}) {
             family: '',
             nickname: '',
             email: '',
+            gender: 'Male',
+            isActive: false,
             isAdmin: false,
             createdAt: moment().format('L'),
         }
@@ -25,21 +27,13 @@ function CreateUserForm({setOpenModal}) {
             type: 'add_user', payload: {user}
         });
 
-        Swal.fire({
-            title: "User created successfully :)",
-            icon: "success",
-            showConfirmButton: false,
-            timerProgressBar: true,
-            timer: 3000,
-            toast: true,
-            position: 'top',
-        });
+        sweetalert("User created successfully :)");
     }
 
     return (
         <form className="space-y-5" onSubmit={(e) => createUserHandler(e)}>
             <div>
-                <input onChange={(e) => setUserState({
+                <input required onChange={(e) => setUserState({
                     ...user,
                     name: e.target.value
                 })}
@@ -50,7 +44,7 @@ function CreateUserForm({setOpenModal}) {
                 />
             </div>
             <div>
-                <input onChange={(e) => setUserState({
+                <input required onChange={(e) => setUserState({
                     ...user,
                     family: e.target.value
                 })}
@@ -61,7 +55,7 @@ function CreateUserForm({setOpenModal}) {
                 />
             </div>
             <div>
-                <input onChange={(e) => setUserState({
+                <input required onChange={(e) => setUserState({
                     ...user,
                     nickname: e.target.value
                 })}
@@ -72,7 +66,7 @@ function CreateUserForm({setOpenModal}) {
                 />
             </div>
             <div>
-                <input onChange={(e) => setUserState({
+                <input required onChange={(e) => setUserState({
                     ...user,
                     email: e.target.value
                 })}
@@ -84,26 +78,66 @@ function CreateUserForm({setOpenModal}) {
             </div>
 
             <div className="flex items-center border-2 border-gray-100 py-1 rounded-md">
-                <span className="text-gray-500 ml-4">Type</span>
+                <label className="text-gray-500 ml-4">Type</label>
                 <div className="flex justify-between gap-10 ml-28">
                     <label className="inline-flex items-center mt-3">
-                        <input type="radio" name="typeOfUser" id="user" value="false"
+                        <input type="radio" name="typeOfUser" id="user"
                                className="form-radio h-5 w-5 text-gray-600" checked onChange={(e) => setUserState({
                             ...user,
-                            isAdmin: e.target.value
+                            isAdmin: e.target.checked
                         })}/><span
                         className="ml-2 text-gray-700">User</span>
                     </label>
 
                     <label className="inline-flex items-center mt-3">
-                        <input type="radio" name="typeOfUser" id="admin" value="true"
+                        <input type="radio" name="typeOfUser" id="admin"
                                className="form-radio h-5 w-5 text-red-600" onChange={(e) => setUserState({
                             ...user,
-                            isAdmin: e.target.value
+                            isAdmin: e.target.checked
                         })}/><span
                         className="ml-2 text-gray-700">Admin</span>
                     </label>
                 </div>
+            </div>
+
+            <div className="flex items-center border-2 border-gray-100 py-1 rounded-md">
+                <div className="mb-3 flex justify-between items-center">
+                    <label className="ml-2 mr-24 text-gray-700">Gender</label>
+                    <select className="form-select appearance-none
+                      block
+                      px-3
+                      py-1.5
+                      text-base
+                      font-normal
+                      text-gray-700
+                      bg-white bg-clip-padding bg-no-repeat
+                      border border-solid border-gray-300
+                      rounded
+                      transition
+                      ease-in-out
+                      m-0
+                      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                            aria-label="Default select example" onChange={(e) => setUserState({
+                        ...user,
+                        gender: e.target.value
+                    })}>
+                        <option disabled>Open this select menu</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+            </div>
+
+            <div className="flex items-center border-2 border-gray-100 py-1 rounded-md">
+                <label className="inline-flex items-center mt-3">
+                        <span
+                            className="ml-2 text-gray-700">Active User</span>
+                    <input type="checkbox" className="form-checkbox h-5 w-5 text-blue-600 ml-5"
+                           onChange={(e) => setUserState({
+                               ...user,
+                               isActive: e.target.checked
+                           })}/>
+                </label>
             </div>
 
             <button type="submit" className="w-full py-3 mt-10 bg-[#063970] hover:opacity-90 transition duration-200 rounded-md

@@ -1,9 +1,12 @@
-import {useState} from 'react';
+import {useContext, useState} from 'react';
 import Modal from "./Modal";
+import UsersContext from "../../context/UsersContext";
+import {sweetalert} from "../../helpers/helpers";
 
-function CreateUserButton() {
+function Footer() {
     const [modalOpen, setModalOpen] = useState(false);
 
+    const userContext = useContext(UsersContext);
 
     return (
         <div className="mx-auto flex justify-center gap-5 mt-5">
@@ -17,9 +20,13 @@ function CreateUserButton() {
             </span>
 
             <span
-                className="p-2 cursor-pointer rounded-md bg-gradient-to-r from-rose-500 to-pink-600 hover:opacity-80 transition duration-200 text-white"
+                className="p-2 cursor-pointer rounded-md bg-gradient-to-r from-rose-700 to-pink-600 hover:opacity-80 transition duration-200 text-white"
                 onClick={() => {
                     localStorage.clear();
+
+                    userContext.dispatch({type: 'reset_users'});
+
+                    sweetalert("Table was reset successfully :)");
                 }}
             >
                 Reset Users
@@ -30,4 +37,4 @@ function CreateUserButton() {
     );
 }
 
-export default CreateUserButton;
+export default Footer;

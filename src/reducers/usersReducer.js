@@ -8,8 +8,8 @@ const usersReducer = (state, action) => {
             return deleteUser(state, action.payload);
         case 'edit_user':
             return editUser(state, action.payload);
-        case 'reset':
-            return 0
+        case 'reset_users':
+            return resetUsers()
         default:
             return state
     }
@@ -37,12 +37,12 @@ let deleteUser = (state, key) => {
 
 let editUser = (state, editedUserData) => {
     let lastUser = state.find((_user, index) => index === editedUserData.index);
-    changeLastUserToNew(lastUser, editedUserData.user);
-    const usersList = state.filter((_user, index) => index !== editedUserData.index);
-    console.log(editedUserData.user);
+    let updatedUser = changeLastUserToNew(lastUser, editedUserData.user);
+    let usersList = state.filter((_user, index) => index !== editedUserData.index);
+
     return [
         ...usersList,
-        editedUserData.user
+        updatedUser
     ];
 }
 
@@ -51,5 +51,13 @@ let changeLastUserToNew = (lastUser, newUser) => {
     lastUser.family = newUser.family;
     lastUser.nickname = newUser.nickname;
     lastUser.email = newUser.email;
+    lastUser.gender = newUser.gender;
+    lastUser.isActive = newUser.isActive;
     lastUser.isAdmin = newUser.isAdmin;
+
+    return lastUser;
+}
+
+let resetUsers = () => {
+    return [];
 }

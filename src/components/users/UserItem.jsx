@@ -9,23 +9,43 @@ function UserItem({user, index}) {
     return (
         !edit ?
             <tr className="bg-white border-b-2 border-gray-200 hover:text-blue-600 hover:bg-gray-200 transition ease-out duration-200 cursor-pointer">
-                <td className="px-16 py-2 ml-6">
+                <td className="px-16 py-2 ml-6 text-center">
                     <span className="text-center ml-3">{index + 1}</span>
                 </td>
-                <td>
-                    <span className="text-center ml-8">{user.name}</span>
+
+                <td className="text-center">
+                    <span className="text-center ml-8">{user.name + user.family}</span>
                 </td>
 
-                <td className="px-16 py-2">
+                <td className="text-center">
+                    <span className="text-center ml-8">{user.nickname}</span>
+                </td>
+
+                <td className="px-16 py-2 text-center">
                     <span
                         className="text-center ">{user.createdAt}</span>
                 </td>
-                <td className="px-16 py-2">
+
+                <td className="px-16 py-2 text-center">
                     <span className="text-center">{user.email}</span>
                 </td>
 
-                <td className="px-16 py-2">
+                <td className="px-16 py-2 text-center">
                     <span className="text-center ml-3">{user.isAdmin ? 'Admin' : 'User'}</span>
+                </td>
+
+                <td className="px-16 py-2 text-center">
+                    <span className="text-center">{user.gender}</span>
+                </td>
+
+                <td className="px-16 py-2 text-center">
+                    <span className="text-center">
+                        {
+                            user.isActive
+                                ? <div className="text-green-600 font-semibold">Active</div> :
+                                <div className="text-rose-600 font-semibold">Disabled</div>
+                        }
+                    </span>
                 </td>
 
                 <td className="px-16 py-2">

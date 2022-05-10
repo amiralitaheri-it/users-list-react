@@ -7,12 +7,12 @@ function Modal({setOpenModal}) {
         <div className="modalBackground">
             <div className="modalContainer">
                 <div className="titleCloseBtn items-center justify-between">
-                    <span className="font-semibold text-green-700">Create New User</span>
+                    <span className="font-semibold text-cyan-700 text-lg">Create New User: </span>
                     <button
                         onClick={() => {
                             setOpenModal(false);
                         }}
-                        className="hover:text-rose-500 transition duration-200"
+                        className="hover:text-rose-800 transition duration-200"
                     >
                         x
                     </button>

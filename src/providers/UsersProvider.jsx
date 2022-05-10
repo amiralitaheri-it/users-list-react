@@ -6,7 +6,7 @@ const UsersProvider = ({children}) => {
     const initialUsersList = (function () {
         return JSON.parse(localStorage.getItem("users")) || [];
     })();
-    console.log(initialUsersList);
+    
     const [users, dispatch] = useReducer(usersReducer, initialUsersList);
 
     useEffect(() => {
