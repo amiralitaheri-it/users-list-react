@@ -4,8 +4,9 @@ import UsersContext from "../../context/UsersContext";
 import {sweetalert} from "../../helpers/helpers";
 
 function Footer() {
+    // state for open and close modal
     const [modalOpen, setModalOpen] = useState(false);
-
+    
     const userContext = useContext(UsersContext);
 
     return (

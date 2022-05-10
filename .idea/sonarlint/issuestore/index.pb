@@ -11,7 +11,7 @@ D
 src/index.js,f\9\f900edc44cb929c2267a16100a32851f6d5b477d
 A
 public/index.html,f\4\f43ecdf8d666ee908aacce037b4cd72159e4741b
-L
-src/context/UsersContext.jsx,5\5\552bdbbe4c47f3bedbd126f3b1e7c07a0eb57e48
 D
 src/styles/modal.css,9\7\97630b8720081c84becc47ad989f46f4438079c0
+L
+src/reducers/usersReducer.js,5\e\5e7db781db99d214eace483bdfc8c8923aef90d7

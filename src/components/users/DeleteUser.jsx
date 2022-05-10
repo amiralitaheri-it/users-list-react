@@ -5,6 +5,7 @@ import {sweetalert} from "../../helpers/helpers";
 function DeleteUser({index}) {
     const userContext = useContext(UsersContext);
 
+    // deleting user handler
     let deleteHandler = () => {
         userContext.dispatch({type: 'delete_user', payload: index});
 

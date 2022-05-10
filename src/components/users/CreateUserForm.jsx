@@ -4,9 +4,9 @@ import moment from "moment";
 import {sweetalert} from "../../helpers/helpers";
 
 function CreateUserForm({setOpenModal}) {
-
     const usersContext = useContext(UsersContext);
 
+    // New user data that will be passed to reducer add action to store it
     const [user, setUserState] = useState(
         {
             name: '',
@@ -20,9 +20,12 @@ function CreateUserForm({setOpenModal}) {
         }
     );
 
+    // handle create user submit form
     let createUserHandler = (e) => {
         e.preventDefault();
+
         setOpenModal(false);
+
         usersContext.dispatch({
             type: 'add_user', payload: {user}
         });

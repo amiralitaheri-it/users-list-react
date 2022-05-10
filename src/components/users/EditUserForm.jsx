@@ -5,6 +5,7 @@ import {sweetalert} from "../../helpers/helpers";
 function EditUserForm({userTarget, index, setEdit}) {
     const usersContext = useContext(UsersContext);
 
+    // Edited user data that will be passed to reducer edit action to edit it
     const [user, setUserState] = useState(
         {
             name: userTarget.name,

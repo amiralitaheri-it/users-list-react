@@ -4,6 +4,7 @@ import DeleteUser from "./DeleteUser";
 import EditUserForm from "./EditUserForm";
 
 function UserItem({user, index}) {
+    // state for show edit component
     const [edit, setEdit] = useState(false);
 
     return (
