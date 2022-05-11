@@ -78,17 +78,18 @@ function EditUserForm({userTarget, index, setEdit}) {
                                checked={!user.isAdmin}
                                onChange={(e) => setUserState({
                                    ...user,
-                                   isAdmin: e.target.value
+                                   isAdmin: false
                                })}/><span
                         className="ml-2 text-gray-700 mr-3">User</span>
                     </label>
 
                     <label className="inline-flex items-center">
                         <input type="radio" name={`user-${index}`} id="admin"
-                               className="form-radio h-5 w-5 text-red-600" checked={user.isAdmin}
+                               className="form-radio h-5 w-5 text-red-600"
+                               checked={user.isAdmin}
                                onChange={(e) => setUserState({
                                    ...user,
-                                   isAdmin: e.target.checked
+                                   isAdmin: true
                                })}/><span
                         className="ml-2 text-gray-700">Admin</span>
                     </label>
