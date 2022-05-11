@@ -46,6 +46,15 @@ function EditUserForm({userTarget, index, setEdit}) {
                 />
             </td>
             <td>
+                <input required id="family" type="text" defaultValue={user.family}
+                       className="w-full border-cyan-600 border-2 text-center focus:text-cyan-600 focus:outline-none focus:border-gray-500 rounded"
+                       onChange={(e) => setUserState({
+                           ...user,
+                           family: e.target.value
+                       })}
+                />
+            </td>
+            <td>
                 <input required id="name" type="text" defaultValue={user.nickname}
                        className="w-full border-cyan-600 border-2 text-center focus:text-cyan-600 focus:outline-none focus:border-gray-500 rounded"
                        onChange={(e) => setUserState({

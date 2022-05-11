@@ -13,6 +13,10 @@ function TableHeader() {
             </th>
 
             <th className="px-16 py-2">
+                <span className="text-gray-100 font-semibold">Family</span>
+            </th>
+
+            <th className="px-16 py-2">
                 <span className="text-gray-100 font-semibold">Nickname</span>
             </th>
 
