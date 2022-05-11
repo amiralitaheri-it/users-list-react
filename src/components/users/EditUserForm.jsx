@@ -59,7 +59,7 @@ function EditUserForm({userTarget, index, setEdit}) {
                        className="w-full border-cyan-600 border-2 text-center focus:text-cyan-600 focus:outline-none focus:border-gray-500 rounded"
                        onChange={(e) => setUserState({
                            ...user,
-                           name: e.target.value
+                           nickname: e.target.value
                        })}
                 />
             </td>
