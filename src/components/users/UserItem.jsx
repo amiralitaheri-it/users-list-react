@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import EditUser from "./EditUser";
 import DeleteUser from "./DeleteUser";
 import EditUserForm from "./EditUserForm";
+import { ConvertGregorianToPersianDate } from '../../helpers/helpers'
 
 function UserItem({user, index}) {
     // state for show edit component
@@ -28,7 +29,10 @@ function UserItem({user, index}) {
 
                 <td className="px-16 py-2 text-center">
                     <span
-                        className="text-center ">{user.createdAt}</span>
+                        className="text-center ">
+                        {/* {user.createdAt} */}
+                        { ConvertGregorianToPersianDate(user.createdAt) }
+                    </span>
                 </td>
 
                 <td className="px-16 py-2 text-center">
