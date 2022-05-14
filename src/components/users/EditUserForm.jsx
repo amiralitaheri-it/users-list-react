@@ -46,11 +46,20 @@ function EditUserForm({userTarget, index, setEdit}) {
                 />
             </td>
             <td>
+                <input required id="family" type="text" defaultValue={user.family}
+                       className="w-full border-cyan-600 border-2 text-center focus:text-cyan-600 focus:outline-none focus:border-gray-500 rounded"
+                       onChange={(e) => setUserState({
+                           ...user,
+                           family: e.target.value
+                       })}
+                />
+            </td>
+            <td>
                 <input required id="name" type="text" defaultValue={user.nickname}
                        className="w-full border-cyan-600 border-2 text-center focus:text-cyan-600 focus:outline-none focus:border-gray-500 rounded"
                        onChange={(e) => setUserState({
                            ...user,
-                           name: e.target.value
+                           nickname: e.target.value
                        })}
                 />
             </td>
@@ -78,17 +87,18 @@ function EditUserForm({userTarget, index, setEdit}) {
                                checked={!user.isAdmin}
                                onChange={(e) => setUserState({
                                    ...user,
-                                   isAdmin: e.target.value
+                                   isAdmin: false
                                })}/><span
                         className="ml-2 text-gray-700 mr-3">User</span>
                     </label>
 
                     <label className="inline-flex items-center">
                         <input type="radio" name={`user-${index}`} id="admin"
-                               className="form-radio h-5 w-5 text-red-600" checked={user.isAdmin}
+                               className="form-radio h-5 w-5 text-red-600"
+                               checked={user.isAdmin}
                                onChange={(e) => setUserState({
                                    ...user,
-                                   isAdmin: e.target.checked
+                                   isAdmin: true
                                })}/><span
                         className="ml-2 text-gray-700">Admin</span>
                     </label>

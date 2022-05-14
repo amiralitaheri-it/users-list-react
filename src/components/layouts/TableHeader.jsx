@@ -11,7 +11,7 @@ function TableHeader({ headerFields }) {
                         </th>
                     ))
                 }
-        </tr>
+            </tr>
         </thead>
     );
 }
