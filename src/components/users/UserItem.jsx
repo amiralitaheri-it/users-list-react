@@ -30,7 +30,6 @@ function UserItem({user, index}) {
                 <td className="px-16 py-2 text-center">
                     <span
                         className="text-center ">
-                        {/* {user.createdAt} */}
                         { ConvertGregorianToPersianDate(user.createdAt) }
                     </span>
                 </td>
@@ -51,8 +50,8 @@ function UserItem({user, index}) {
                     <span className="text-center">
                         {
                             user.isActive
-                                ? <div className="text-green-600 font-semibold">Active</div> :
-                                <div className="text-rose-600 font-semibold">Disabled</div>
+                                ? <div className="text-green-600 font-semibold">Active</div>
+                                : <div className="text-rose-600 font-semibold">Disabled</div>
                         }
                     </span>
                 </td>

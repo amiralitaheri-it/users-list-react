@@ -1,6 +1,5 @@
 import {useContext, useState} from 'react';
 import UsersContext from "../../context/UsersContext";
-import moment from "moment";
 import {sweetalert} from "../../helpers/helpers";
 
 function CreateUserForm({setOpenModal}) {
@@ -16,7 +15,7 @@ function CreateUserForm({setOpenModal}) {
             gender: 'Male',
             isActive: false,
             isAdmin: false,
-            createdAt: moment().format('L'),
+            createdAt: Date.now(),
         }
     );
 

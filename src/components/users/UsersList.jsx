@@ -14,7 +14,7 @@ function UsersList() {
                 {
                     userContext.users.length === 0
                         ? <tr>
-                            <td colSpan="9" className="text-center text-rose-800 p-5 text-2xl font-semibold">There aren`t any
+                            <td colSpan="10" className="text-center text-rose-800 p-5 text-2xl font-semibold">There aren`t any
                                 users :(
                             </td>
                         </tr>

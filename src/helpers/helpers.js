@@ -16,11 +16,8 @@ export function sweetalert(title, icon = "success", timer = 3000, position = 'to
 
 /**
  * ConvertGregorianToPersianDate
- * @param {*} getDate : gregorian  date
  * @returns persian date
  */
-export function  ConvertGregorianToPersianDate(getDate) {
-
+export function ConvertGregorianToPersianDate(getDate) {
     return moment(new Date(getDate), 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD')
-
 }
