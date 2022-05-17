@@ -7,9 +7,9 @@ function UsersList() {
     const userContext = useContext(UsersContext);
 
     return (
-        <div class="overflow-auto">
+        <div className="overflow-auto">
             <table className="mt-10 max-w-5xl mx-auto table-auto rounded-lg">
-                <TableHeader headerFields={ ['#id', 'Name', 'Family', 'NickName', 'Date', 'Email', 'Type', 'Gender ', 'Type', 'Settings'] }/>
+                <TableHeader headerFields={['#id', 'Name', 'Family', 'NickName', 'Date', 'Email', 'Type', 'Gender ', 'Type', 'Settings']}/>
                 <tbody className="bg-gray-200 border-2 rounded-lg">
                 {
                     userContext.users.length === 0
@@ -19,7 +19,7 @@ function UsersList() {
                             </td>
                         </tr>
                         : userContext.users.map((user, index) => <UserItem key={index + Math.random() * 1000}
-                                                                        user={user} index={index}/>)
+                                                                           user={user} index={index}/>)
                 }
                 </tbody>
             </table>
