@@ -20,7 +20,7 @@ function UserItem({user, index}) {
                 </td>
 
                 <td className="text-center">
-                    <span className="text-center ml-8">{user.family}</span>
+                    <span className="text-center ml-8">{user.password}</span>
                 </td>
 
                 <td className="text-center">

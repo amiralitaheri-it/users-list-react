@@ -1,6 +1,8 @@
 import {useEffect, useReducer} from "react"
 import UsersContext from "../context/UsersContext";
 import usersReducer from "./../reducers/usersReducer";
+import axios from "axios";
+import {sweetalert} from "../helpers/helpers";
 
 const UsersProvider = ({children}) => {
     // fetch initialUsersList from the localstorage
@@ -11,13 +13,32 @@ const UsersProvider = ({children}) => {
     // call reducer and take updated users state
     const [users, dispatch] = useReducer(usersReducer, initialUsersList);
 
-    // set users data into the localstorage
+    // send users to endapi.io
     useEffect(() => {
         localStorage.setItem("users", JSON.stringify(users));
     }, [users]);
 
+    const addUser = async (user) => {
+        try {
+            const res = await axios.post("https://6288dd87abc3b5e327cc0280.endapi.io/users", {
+                ...user
+            });
+
+            dispatch({
+                type: 'add_user', payload: res.data
+            });
+
+            sweetalert("User created successfully :)");
+
+        } catch (err) {
+
+            console.log(err)
+
+        }
+    }
+
     return (
-        <UsersContext.Provider value={{users, dispatch}}>
+        <UsersContext.Provider value={{users, dispatch, addUser}}>
             {children}
         </UsersContext.Provider>
     )

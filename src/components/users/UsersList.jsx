@@ -9,7 +9,7 @@ function UsersList() {
     return (
         <div className="overflow-auto">
             <table className="mt-10 max-w-5xl mx-auto table-auto rounded-lg">
-                <TableHeader headerFields={['#id', 'Name', 'Family', 'NickName', 'Date', 'Email', 'Type', 'Gender ', 'Type', 'Settings']}/>
+                <TableHeader headerFields={['#id', 'Name', 'Password', 'NickName', 'Date', 'Email', 'Type', 'Gender ', 'Type', 'Settings']}/>
                 <tbody className="bg-gray-200 border-2 rounded-lg">
                 {
                     userContext.users.length === 0

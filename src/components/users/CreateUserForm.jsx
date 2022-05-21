@@ -1,6 +1,5 @@
 import React, {useContext, useState} from 'react';
 import UsersContext from "../../context/UsersContext";
-import {sweetalert} from "../../helpers/helpers";
 
 function CreateUserForm({setOpenModal}) {
     const usersContext = useContext(UsersContext);
@@ -9,7 +8,7 @@ function CreateUserForm({setOpenModal}) {
     const [user, setUserState] = useState(
         {
             name: '',
-            family: '',
+            password: '',
             nickname: '',
             email: '',
             gender: 'Male',
@@ -20,16 +19,14 @@ function CreateUserForm({setOpenModal}) {
     );
 
     // handle create user submit form
-    let createUserHandler = (e) => {
+    let createUserHandler = async (e) => {
         e.preventDefault();
 
         setOpenModal(false);
 
-        usersContext.dispatch({
-            type: 'add_user', payload: {user}
-        });
-
-        sweetalert("User created successfully :)");
+        if (user) {
+            await usersContext.addUser(user)
+        }
     }
 
     return (
@@ -48,9 +45,9 @@ function CreateUserForm({setOpenModal}) {
             <div>
                 <input required onChange={(e) => setUserState({
                     ...user,
-                    family: e.target.value
+                    password: e.target.value
                 })}
-                       id="family" type="text" placeholder="family" className="block w-full py-3 px-3 mt-2
+                       id="password" type="password" placeholder="password" className="block w-full py-3 px-3 mt-2
                             text-gray-800 appearance-none
                             border-2 border-gray-100
                             focus:text-gray-500 focus:outline-none focus:border-gray-200 rounded-md"

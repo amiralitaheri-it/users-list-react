@@ -9,7 +9,7 @@ function EditUserForm({userTarget, index, setEdit}) {
     const [user, setUserState] = useState(
         {
             name: userTarget.name,
-            family: userTarget.family,
+            password: userTarget.password,
             nickname: userTarget.nickname,
             email: userTarget.email,
             gender: userTarget.gender,
@@ -46,11 +46,11 @@ function EditUserForm({userTarget, index, setEdit}) {
                 />
             </td>
             <td>
-                <input required id="family" type="text" defaultValue={user.family}
+                <input required id="password" type="text" defaultValue={user.password}
                        className="w-full border-cyan-600 border-2 text-center focus:text-cyan-600 focus:outline-none focus:border-gray-500 rounded"
                        onChange={(e) => setUserState({
                            ...user,
-                           family: e.target.value
+                           password: e.target.value
                        })}
                 />
             </td>
