@@ -1,3 +1,5 @@
+import React from "react";
+
 function EditUser({edit, setEdit}) {
 
     return (
@@ -19,4 +21,4 @@ function EditUser({edit, setEdit}) {
     );
 }
 
-export default EditUser;
+export default React.memo(EditUser);

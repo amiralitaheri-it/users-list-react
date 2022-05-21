@@ -23,4 +23,4 @@ function Modal({setOpenModal}) {
     );
 }
 
-export default Modal;
+export default React.memo(Modal);

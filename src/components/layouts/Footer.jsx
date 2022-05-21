@@ -1,4 +1,4 @@
-import {useContext, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import Modal from "./Modal";
 import UsersContext from "../../context/UsersContext";
 import {sweetalert} from "../../helpers/helpers";
@@ -6,7 +6,7 @@ import {sweetalert} from "../../helpers/helpers";
 function Footer() {
     // state for open and close modal
     const [modalOpen, setModalOpen] = useState(false);
-    
+
     const userContext = useContext(UsersContext);
 
     return (
@@ -38,4 +38,4 @@ function Footer() {
     );
 }
 
-export default Footer;
+export default React.memo(Footer);

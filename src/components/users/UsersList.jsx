@@ -1,4 +1,4 @@
-import {useContext} from 'react';
+import React, {useContext} from 'react';
 import UsersContext from "../../context/UsersContext";
 import TableHeader from "../layouts/TableHeader";
 import UserItem from "./UserItem";
@@ -28,4 +28,4 @@ function UsersList() {
     );
 }
 
-export default UsersList;
+export default React.memo(UsersList);

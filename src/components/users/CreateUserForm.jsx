@@ -1,4 +1,4 @@
-import {useContext, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import UsersContext from "../../context/UsersContext";
 import {sweetalert} from "../../helpers/helpers";
 
@@ -151,4 +151,4 @@ function CreateUserForm({setOpenModal}) {
     );
 }
 
-export default CreateUserForm;
+export default React.memo(CreateUserForm);

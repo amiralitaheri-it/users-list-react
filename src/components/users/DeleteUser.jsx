@@ -106,4 +106,4 @@ function DeleteUser({index}) {
     );
 }
 
-export default DeleteUser;
+export default React.memo(DeleteUser);

@@ -155,4 +155,4 @@ function EditUserForm({userTarget, index, setEdit}) {
     );
 }
 
-export default EditUserForm;
+export default React.memo(EditUserForm);
