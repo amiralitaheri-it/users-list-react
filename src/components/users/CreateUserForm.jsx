@@ -2,7 +2,7 @@ import React, {useContext, useState} from 'react';
 import UsersContext from "../../context/UsersContext";
 
 function CreateUserForm({setOpenModal}) {
-    const usersContext = useContext(UsersContext);
+    const {addUser} = useContext(UsersContext);
 
     // New user data that will be passed to reducer add action to store it
     const [user, setUserState] = useState(
@@ -25,7 +25,7 @@ function CreateUserForm({setOpenModal}) {
         setOpenModal(false);
 
         if (user) {
-            await usersContext.addUser(user)
+            await addUser(user)
         }
     }
 

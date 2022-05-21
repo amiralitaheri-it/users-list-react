@@ -18,7 +18,6 @@ const usersReducer = (state, action) => {
 export default usersReducer;
 
 let addUser = (state, {user}) => {
-
     return [
         ...state,
         user
@@ -26,9 +25,7 @@ let addUser = (state, {user}) => {
 }
 
 let loadUsers = (usersData) => {
-    return {
-        users: usersData
-    }
+    return usersData
 }
 
 let deleteUser = (state, key) => {
