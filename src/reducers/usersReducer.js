@@ -17,7 +17,8 @@ const usersReducer = (state, action) => {
 
 export default usersReducer;
 
-let addUser = (state, {user}) => {
+let addUser = (state, user) => {
+    console.log(user)
     return [
         ...state,
         user
@@ -29,20 +30,19 @@ let loadUsers = (usersData) => {
 }
 
 let deleteUser = (state, key) => {
-    return state.filter((_user, index) => index !== key)
+    return state.filter(user => user.id !== key)
 }
 
 let editUser = (state, editedUserData) => {
     let lastUser = state.find((_user, index) => index === editedUserData.index);
-    let updatedUser = changeLastUserToNew(lastUser, editedUserData.user);
-    state[lastUser] = updatedUser
+    state[lastUser] = changeLastUserToNew(lastUser, editedUserData.user)
 
     return state
 }
 
 let changeLastUserToNew = (lastUser, newUser) => {
     lastUser.name = newUser.name;
-    lastUser.family = newUser.family;
+    lastUser.password = newUser.password;
     lastUser.nickname = newUser.nickname;
     lastUser.email = newUser.email;
     lastUser.gender = newUser.gender;

@@ -1,4 +1,4 @@
-import {useCallback, useReducer} from "react"
+import React, {useCallback, useReducer} from "react"
 import UsersContext from "../context/UsersContext";
 import usersReducer from "./../reducers/usersReducer";
 import axios from "axios";
@@ -13,6 +13,7 @@ const UsersProvider = ({children}) => {
     const getUsers = useCallback(async () => {
         try {
             const res = await axios.get("https://6288dd87abc3b5e327cc0280.endapi.io/users");
+
             dispatch(
                 {type: "load_users", payload: res.data.data}
             );
@@ -21,7 +22,7 @@ const UsersProvider = ({children}) => {
         }
     }, []);
 
-    // sen user to endapi.io
+    // send new user to endapi.io
     const addUser = async (user) => {
         try {
             const res = await axios.post("https://6288dd87abc3b5e327cc0280.endapi.io/users", user);
@@ -37,12 +38,24 @@ const UsersProvider = ({children}) => {
         }
     }
 
+    // remove user from endapi.io
+    const removeUser = async (userId) => {
+        try {
+            await axios.delete(`https://6288dd87abc3b5e327cc0280.endapi.io/users/${userId}`);
+
+            dispatch({type: "delete_user", payload: userId});
+
+            sweetalert("User deleted successfully :)");
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
     return (
-        <UsersContext.Provider value={{users, getUsers, addUser}}>
+        <UsersContext.Provider value={{users, getUsers, addUser, removeUser}}>
             {children}
         </UsersContext.Provider>
     )
 }
 
-export default UsersProvider;
+export default React.memo(UsersProvider);

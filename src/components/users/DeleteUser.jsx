@@ -1,11 +1,10 @@
 import React, {Fragment, useContext, useRef, useState} from 'react';
 import UsersContext from "../../context/UsersContext";
-import {sweetalert} from "../../helpers/helpers";
 import {Dialog, Transition} from '@headlessui/react'
 import {ExclamationIcon} from '@heroicons/react/outline'
 
 function DeleteUser({index}) {
-    const userContext = useContext(UsersContext);
+    const {removeUser} = useContext(UsersContext);
 
     const [open, setOpen] = useState(false)
 
@@ -15,9 +14,7 @@ function DeleteUser({index}) {
     let deleteHandler = () => {
         setOpen(false);
 
-        userContext.dispatch({type: 'delete_user', payload: index});
-
-        sweetalert("User deleted successfully :)");
+        removeUser(index);
     }
 
     return (
