@@ -24,7 +24,7 @@ function UsersList() {
                                 users :(
                             </td>
                         </tr>
-                        : users.map((user) => <UserItem key={user.id + Math.random() * 1000}
+                        : users.map((user) => <UserItem key={user.id}
                                                         user={user} index={user.id}/>)
                 }
                 </tbody>

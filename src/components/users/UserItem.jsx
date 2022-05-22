@@ -12,7 +12,7 @@ function UserItem({user, index}) {
         !edit ?
             <tr className="bg-white border-b-2 border-gray-200 hover:text-blue-600 hover:bg-gray-200 transition ease-out duration-200 cursor-pointer">
                 <td className="px-16 py-2 ml-6 text-center">
-                    <span className="text-center ml-3">{index + 1}</span>
+                    <span className="text-center ml-3">{index}</span>
                 </td>
 
                 <td className="text-center">

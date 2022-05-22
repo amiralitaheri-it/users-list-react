@@ -1,9 +1,8 @@
 import React, {useContext, useState} from 'react';
 import UsersContext from "../../context/UsersContext";
-import {sweetalert} from "../../helpers/helpers";
 
 function EditUserForm({userTarget, index, setEdit}) {
-    const usersContext = useContext(UsersContext);
+    const {updateTodo} = useContext(UsersContext);
 
     // Edited user data that will be passed to reducer edit action to edit it
     const [user, setUserState] = useState(
@@ -21,20 +20,16 @@ function EditUserForm({userTarget, index, setEdit}) {
 
     let editUserHandler = (e) => {
         e.preventDefault();
-
-        usersContext.dispatch({
-            type: 'edit_user', payload: {index, user}
-        })
+ 
+        updateTodo(index, user);
 
         setEdit(false);
-
-        sweetalert("User Edited successfully :)");
     }
 
     return (
         <tr className="bg-white border-b-2 border-gray-200 text-center">
             <td className="ml-6 text-center">
-                <span className="text-center ml-3">{index + 1}</span>
+                <span className="text-center ml-3">{index}</span>
             </td>
             <td>
                 <input required id="name" type="text" defaultValue={user.name}

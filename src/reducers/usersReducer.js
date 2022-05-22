@@ -34,10 +34,17 @@ let deleteUser = (state, key) => {
 }
 
 let editUser = (state, editedUserData) => {
-    let lastUser = state.find((_user, index) => index === editedUserData.index);
-    state[lastUser] = changeLastUserToNew(lastUser, editedUserData.user)
+    console.log(editedUserData)
+    let lastUser = state.find(user => user.id === editedUserData.id);
 
-    return state
+    let updatedUser = changeLastUserToNew(lastUser, editedUserData)
+
+    let newUsersList = state.filter(user => user.id !== editedUserData.id)
+
+    return [
+        ...newUsersList,
+        updatedUser
+    ]
 }
 
 let changeLastUserToNew = (lastUser, newUser) => {

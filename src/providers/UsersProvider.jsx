@@ -51,8 +51,22 @@ const UsersProvider = ({children}) => {
         }
     }
 
+    const updateTodo = async (index, user) => {
+        try {
+            const res = await axios.put(`https://6288dd87abc3b5e327cc0280.endapi.io/users/${index}`, user);
+
+            dispatch({
+                type: 'edit_user', payload: res.data
+            })
+
+            sweetalert("User Edited successfully :)");
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     return (
-        <UsersContext.Provider value={{users, getUsers, addUser, removeUser}}>
+        <UsersContext.Provider value={{users, getUsers, addUser, removeUser, updateTodo}}>
             {children}
         </UsersContext.Provider>
     )
