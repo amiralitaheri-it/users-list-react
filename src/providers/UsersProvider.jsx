@@ -8,7 +8,7 @@ const UsersProvider = ({children}) => {
 
     // call reducer and take updated usersApi state
     const [users, dispatch] = useReducer(usersReducer, []);
-    console.log(users)
+    
     // get usersApi from endapi.io
     const getUsers = useCallback(async () => {
         try {

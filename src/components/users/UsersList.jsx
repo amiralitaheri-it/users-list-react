@@ -23,7 +23,7 @@ function UsersList() {
             </tr>
         }
 
-        return users.map((user) => <UserItem key={user.id}
+        return users.map((user) => <UserItem key={user.id + Date.now()}
                                              user={user} index={user.id} setLoading={setLoading}/>)
     };
     return (
