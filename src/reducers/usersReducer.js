@@ -34,7 +34,6 @@ let deleteUser = (state, key) => {
 }
 
 let editUser = (state, editedUserData) => {
-    console.log(editedUserData)
     let lastUser = state.find(user => user.id === editedUserData.id);
 
     let updatedUser = changeLastUserToNew(lastUser, editedUserData)

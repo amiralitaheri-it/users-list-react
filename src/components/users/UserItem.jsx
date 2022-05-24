@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import EditUser from "./EditUser";
 import DeleteUser from "./DeleteUser";
-import EditUserForm from "./EditUserForm";
+import EditUserForm from "./form/EditUserForm";
 import {ConvertGregorianToPersianDate} from '../../helpers/helpers'
 
 function UserItem({user, index}) {

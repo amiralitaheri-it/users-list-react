@@ -1,6 +1,6 @@
 import React from "react";
 import "../../styles/modal.css";
-import CreateUserForm from "../users/CreateUserForm";
+import CreateUserForm from "../users/form/CreateUserForm";
 
 function Modal({setOpenModal}) {
     return (

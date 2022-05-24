@@ -1,8 +1,8 @@
 import React, {useContext, useState} from 'react';
-import UsersContext from "../../context/UsersContext";
+import UsersContext from "../../../context/UsersContext";
 
 function EditUserForm({userTarget, index, setEdit}) {
-    const {updateTodo} = useContext(UsersContext);
+    const {updateUser} = useContext(UsersContext);
 
     // Edited user data that will be passed to reducer edit action to edit it
     const [user, setUserState] = useState(
@@ -20,8 +20,8 @@ function EditUserForm({userTarget, index, setEdit}) {
 
     let editUserHandler = (e) => {
         e.preventDefault();
- 
-        updateTodo(index, user);
+
+        updateUser(index, user);
 
         setEdit(false);
     }
